@@ -23,20 +23,12 @@ public class ATM {
     public static void closeAccount(String userid) throws Exception {
         if (account.get(userid) == 0) {
             account.remove(userid);
-            for (int i = 0; i < keys.size(); i++) {
-                if (keys.get(i) == userid) {
-                    keys.remove(i);
-                }
-            }
         } else {
             throw new Exception("Withdraw your money first");
         }
     }
 
-    public static double checkBalance(String userid) throws Exception {
-        if (!account.containsKey(userid)) {
-            throw new Exception("There is no account by" + userid);
-        }
+    public static double checkBalance(String userid) {
         return account.get(userid);
     }
 
@@ -82,8 +74,6 @@ public class ATM {
         System.out.println(keys.size());
         transferMoney("Chris", "Aidan", 3000);
         withdrawMoney("Chris", 1000);
-        withdrawMoney("Mark", 1000);
-        closeAccount("Mark");
         audit();
     }
 }
